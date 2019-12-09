@@ -51,48 +51,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mStartDateCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-
-            }
-        });
-
-        mEndtDateCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-
-            }
-        });
-
-
-        // Скроем календари при запуске приложения
         mStartDateCalendar.setVisibility(View.GONE);
         mEndtDateCalendar.setVisibility(View.GONE);
 
         mStartDateCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                mStartDateTxt = i+"-"+i1+"-"+i2;
-                mChooseStartDate.setText("Дата-время старта задачи: " + mStartDateTxt);
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                mStartDateTxt = year+"-"+month+"-"+dayOfMonth;
+                mChooseStartDate.setText(getString(R.string.txtStart)+ mStartDateTxt);
                 GregorianCalendar gregorianCalendar = new GregorianCalendar();
-                gregorianCalendar.set(i, i1, i2);
+                gregorianCalendar.set(year, month, dayOfMonth);
                 mStartDate = gregorianCalendar.getTimeInMillis();
-                calendarView.setVisibility(View.GONE);
+                mStartDateCalendar.setVisibility(View.GONE);
             }
         });
 
+
         mEndtDateCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                mEndDateTxt = i+"-"+i1+"-"+i2;
-                mChooseEndDate.setText("Дата-время окончания задачи: " + mEndDateTxt);
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                mEndDateTxt = year+"-"+month+"-"+dayOfMonth;
+                mChooseEndDate.setText(getString(R.string.txtStop)+ mEndDateTxt);
                 GregorianCalendar gregorianCalendar = new GregorianCalendar();
-                gregorianCalendar.set(i, i1, i2);
+                gregorianCalendar.set(year, month, dayOfMonth);
                 mEndDate = gregorianCalendar.getTimeInMillis();
-                calendarView.setVisibility(View.GONE);
+                mEndtDateCalendar.setVisibility(View.GONE);
             }
         });
+
         mBtnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
