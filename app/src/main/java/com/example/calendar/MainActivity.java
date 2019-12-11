@@ -13,15 +13,15 @@ import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button mChooseStartDate;
-    private Button mChooseEndDate;
-    private CalendarView mStartDateCalendar;
-    private CalendarView mEndtDateCalendar;
-    private Button mBtnOK;
-    private long mStartDate;
-    private String mStartDateTxt;
-    private long mEndDate;
-    private String mEndDateTxt;
+    private Button ChooseStartDate;
+    private Button ChooseEndDate;
+    private CalendarView StartDateCalendar;
+    private CalendarView EndtDateCalendar;
+    private Button BtnOK;
+    private long StartDate;
+    private String StartDateTxt;
+    private long EndDate;
+    private String EndDateTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,65 +29,65 @@ public class MainActivity extends AppCompatActivity {
         initViews();
     }
     private void initViews() {
-        mChooseStartDate = findViewById(R.id.chooseStartDate);
-        mChooseEndDate = findViewById(R.id.chooseEndDate);
-        mStartDateCalendar = findViewById(R.id.startDateCalendar);
-        mEndtDateCalendar = findViewById(R.id.endtDateCalendar);
-        mBtnOK = findViewById(R.id.btnOK);
+        ChooseStartDate = findViewById(R.id.chooseStartDate);
+        ChooseEndDate = findViewById(R.id.chooseEndDate);
+        StartDateCalendar = findViewById(R.id.startDateCalendar);
+        EndtDateCalendar = findViewById(R.id.endtDateCalendar);
+        BtnOK = findViewById(R.id.btnOK);
 
-        mChooseStartDate.setOnClickListener(new View.OnClickListener() {
+        ChooseStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mStartDateCalendar.setVisibility(View.VISIBLE);
-                mEndtDateCalendar.setVisibility(View.GONE);
+                StartDateCalendar.setVisibility(View.VISIBLE);
+                EndtDateCalendar.setVisibility(View.GONE);
             }
         });
 
-        mChooseEndDate.setOnClickListener(new View.OnClickListener() {
+        ChooseEndDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mEndtDateCalendar.setVisibility(View.VISIBLE);
-                mStartDateCalendar.setVisibility(View.GONE);
+                EndtDateCalendar.setVisibility(View.VISIBLE);
+                StartDateCalendar.setVisibility(View.GONE);
             }
         });
 
-        mStartDateCalendar.setVisibility(View.GONE);
-        mEndtDateCalendar.setVisibility(View.GONE);
+        StartDateCalendar.setVisibility(View.GONE);
+        EndtDateCalendar.setVisibility(View.GONE);
 
-        mStartDateCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        StartDateCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                mStartDateTxt = year+"-"+month+"-"+dayOfMonth;
-                mChooseStartDate.setText(getString(R.string.txtStart)+ mStartDateTxt);
+                StartDateTxt = year+"-"+month+"-"+dayOfMonth;
+                ChooseStartDate.setText(getString(R.string.txtStart)+ StartDateTxt);
                 GregorianCalendar gregorianCalendar = new GregorianCalendar();
                 gregorianCalendar.set(year, month, dayOfMonth);
-                mStartDate = gregorianCalendar.getTimeInMillis();
-                mStartDateCalendar.setVisibility(View.GONE);
+                StartDate = gregorianCalendar.getTimeInMillis();
+                StartDateCalendar.setVisibility(View.GONE);
             }
         });
 
 
-        mEndtDateCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        EndtDateCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                mEndDateTxt = year+"-"+month+"-"+dayOfMonth;
-                mChooseEndDate.setText(getString(R.string.txtStop)+ mEndDateTxt);
+                EndDateTxt = year+"-"+month+"-"+dayOfMonth;
+                ChooseEndDate.setText(getString(R.string.txtStop)+ EndDateTxt);
                 GregorianCalendar gregorianCalendar = new GregorianCalendar();
                 gregorianCalendar.set(year, month, dayOfMonth);
-                mEndDate = gregorianCalendar.getTimeInMillis();
-                mEndtDateCalendar.setVisibility(View.GONE);
+                EndDate = gregorianCalendar.getTimeInMillis();
+                EndtDateCalendar.setVisibility(View.GONE);
             }
         });
 
-        mBtnOK.setOnClickListener(new View.OnClickListener() {
+        BtnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mStartDate > mEndDate){
-                    Toast.makeText(MainActivity.this, "Ошибка", Toast.LENGTH_LONG).show();
-                    mChooseStartDate.setText("Дата-время старта задачи:");
-                    mChooseEndDate.setText("Дата-время окончания задачи:");
+                if (StartDate > EndDate){
+                    Toast.makeText(MainActivity.this, getString(R.string.txtinform), Toast.LENGTH_LONG).show();
+                    ChooseStartDate.setText(R.string.txtStart);
+                    ChooseEndDate.setText(R.string.txtStop);
                 } else {
-                    Toast.makeText(MainActivity.this, "старт: " + mStartDateTxt + " окончаниe: " + mEndDateTxt, Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.txtstart) + StartDateTxt + getString(R.string.txtkon) + EndDateTxt, Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -29,7 +29,7 @@
         android:id="@+id/endtDateCalendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#E2E2E2"/>
+        android:background="@color/colorGray"/>
 
     <Button
         android:id="@+id/btnOK"

@@ -2,5 +2,8 @@
     <string name="app_name">Calendar</string>
     <string name="txtStart">Дата-время старта задачи:</string>
     <string name="txtStop">Дата-время окончания задачи:</string>
+    <string name="txtinform">Ошибка:</string>
+    <string name="txtkon">Оконочание:</string>
     <string name="txtOk">OK</string>
+    <string name="txtstart">Старт</string>
 </resources>
